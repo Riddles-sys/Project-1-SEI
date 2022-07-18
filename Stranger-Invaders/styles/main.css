@@ -1,0 +1,165 @@
+* {
+  font-family: 'ArcadeClassic', sans-serif;
+  box-sizing: border-box;
+}
+
+body{
+  border: 1px solid grey;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.title{
+  display: flex;
+  justify-content: center;
+  color: rgba(255,21,21);
+  animation: blinkingText 2s 5;
+  font-size: 50px;
+}
+
+section {
+  margin: 0 auto;
+  max-width: 80%;
+  padding: 0 10px;
+  justify-content: center;
+  border: 1px solid grey;
+  /* background-video: url(.images/); */
+  margin-bottom: 20px;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+main {
+  margin: 45px 0 55px;
+  text-align: center;
+  display: flex;
+}
+
+.instructions {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 300px;
+  height: 500px;
+}
+
+.game-container {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+}
+
+.game-display {
+  border: 1px solid grey;
+  width: 350px;
+  height: 350px;
+  height: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-display div {
+  border: 1px solid lightgray;
+  flex-grow: 1;
+  height: 10%;
+  width: 10%;
+  /* background-color: black; */
+}
+
+.game-display div.hero {
+  background-image: url('../images/eleven.gif');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  background-color: #a2203e;
+}
+
+.game-display div.demo {
+  background-image: url('../images/demogorgonsmall.gif');
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* background-color: #646464; */
+}
+
+.game-display div.rShooter{
+  background-color: #a2203e;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.game-display div.eForce{
+  background-color: #1e193c;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.top-score {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 300px;
+  height: 500px;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+}
+
+.updates {
+  display: flex;
+  justify-content: space-around;
+}
+
+#lives{
+  border: 1px solid grey;
+}
+
+.current-score {
+  border: 1px solid grey;
+}
+
+#game-display{
+  border: 1px solid grey;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btns {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  width: 90%;
+}
+
+.username-input {
+  padding: 10px;
+}
+
+
+@keyframes blinkingText{
+  0%{color: rgba(255,21,21);}
+  49%{color: rgba(255,21,21);}
+  60%{color: transparent;}
+  99%{color: transparent;}
+  100%{color: rgba(255,21,21);}
+}
