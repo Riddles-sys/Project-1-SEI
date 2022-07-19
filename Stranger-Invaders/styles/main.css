@@ -1,190 +1,209 @@
 * {
-  font-family: 'ArcadeClassic', sans-serif;
-  box-sizing: border-box;
+	font-family: 'ArcadeClassic', sans-serif;
+	box-sizing: border-box;
 }
 
-body{
-  border: 1px solid grey;
-  max-width: 100%;
-  max-height: 100%;
+body {
+	border: 1px solid grey;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	overflow: hidden;
 }
 
 #background-video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
 }
 
 header {
-  display: flex;
-  justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
-
-.title{
-  display: flex;
-  justify-content: center;
-  color: rgba(255,21,21);
-  animation: blinkingText 2s 5;
-  font-size: 50px;
+.title {
+	display: flex;
+	justify-content: center;
+	color: rgba(255, 21, 21);
+	animation: blinkingText 2s 5;
+	font-size: 50px;
 }
 
 section {
-  margin: 0 auto;
-  max-width: 80%;
-  padding: 0 10px;
-  justify-content: center;
-  border: 1px solid grey;
-  /* background-video: url(.images/); */
-  margin-bottom: 20px;
-  margin-top: 5px;
-  padding: 10px;
+	margin: 0 auto;
+	max-width: 80%;
+	padding: 0 10px;
+	justify-content: center;
+	border: 1px solid grey;
+	/* background-video: url(.images/); */
+	margin-bottom: 20px;
+	margin-top: 5px;
+	padding: 10px;
 }
 
 main {
-  margin: 45px 0 55px;
-  text-align: center;
-  display: flex;
+	margin: 45px 0 55px;
+	text-align: center;
+	display: flex;
 }
 
 .instructions {
-  border: 1px solid grey;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 300px;
-  height: 500px;
-  box-shadow: inset 0 0 0 1000px rgba(125, 121, 121, 0.5);
-  color: white;
+	border: 1px solid grey;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	width: 300px;
+	height: 500px;
+	box-shadow: inset 0 0 0 1000px rgba(125, 121, 121, 0.5);
+	color: white;
 }
 
 .game-container {
-  border: 1px solid grey;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 500px;
-  height: 500px;
-  background-image: url('../images/vecna.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+	border: 1px solid grey;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	width: 500px;
+	height: 500px;
+	background-image: url('../images/vecna.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .game-display {
-  border: 1px solid grey;
-  width: 350px;
-  height: 350px;
-  height: 100%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  box-shadow: inset 0 0 0 1000px rgba(125, 121, 121, 0.5);
-  color: white;
-  /* background-image: url('../images/vecna.jpg');
+	border: 1px solid grey;
+	width: 350px;
+	height: 350px;
+	height: 100%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	box-shadow: inset 0 0 0 1000px rgba(125, 121, 121, 0.5);
+	color: white;
+	/* background-image: url('../images/vecna.jpg');
   background-repeat: no-repeat;
   background-size: cover; */
 }
 
 .game-display div {
-  border: 1px solid lightgray;
-  flex-grow: 1;
-  height: 10%;
-  width: 10%;
+	border: 1px solid lightgray;
+	flex-grow: 1;
+	height: 10%;
+	width: 10%;
 }
 
 .game-display div.hero {
-  background-image: url('../images/eleven.gif');
-  background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
-  background-color: #a2203e;
+	background-image: url('../images/eleven.gif');
+	background-repeat: no-repeat;
+	background-size: contain;
+	cursor: pointer;
+	background-color: #a2203e;
 }
 
 .game-display div.demo {
-  background-image: url('../images/demogorgonsmall.gif');
-  background-repeat: no-repeat;
-  background-size: contain;
-  /* background-color: #646464; */
+	background-image: url('../images/vecna_dribbble_1_1x.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: #7971a0;
 }
 
-.game-display div.rShooter{
-  background-color: #a2203e;
-  background-repeat: no-repeat;
-  background-size: contain;
+.rShooter {
+	background-color: #a2203e;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
-.game-display div.eForce{
-  background-color: #1e193c;
-  background-repeat: no-repeat;
-  background-size: contain;
+.game-display div.eForce {
+	background-image: url('../images/demogorgonsmall.gif');
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 .top-score {
-  border: 1px solid grey;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 300px;
-  height: 500px;
-  box-shadow: inset 0 0 0 1000px rgba(125, 121, 121, 0.5);
-  color: white;
+	border: 1px solid grey;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	width: 300px;
+	height: 500px;
+	box-shadow: inset 0 0 0 1000px rgba(125, 121, 121, 0.5);
+	color: white;
 }
 
 ul {
-  list-style: none;
-  text-align: left;
+	list-style: none;
+	text-align: left;
+}
+
+.elevenForce {
+	background-color: #a2203e;
 }
 
 .updates {
-  display: flex;
-  justify-content: space-around;
-  color: whitesmoke;
+	display: flex;
+	justify-content: space-around;
+	color: whitesmoke;
 }
 
-#lives{
-  border: 1px solid grey;
+#lives {
+	border: 1px solid grey;
 }
 
 .current-score {
-  border: 1px solid grey;
+	border: 1px solid grey;
 }
 
-#game-display{
-  border: 1px solid grey;
+#game-display {
+	border: 1px solid grey;
 }
 
 .buttons-container {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .btns {
-  border: 1px solid grey;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  width: 90%;
-  margin-bottom: 20px;
+	border: 1px solid grey;
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+	width: 90%;
+	margin-bottom: 20px;
 }
 
 .username-input {
-  padding: 10px;
+	padding: 10px;
 }
 
-
-@keyframes blinkingText{
-  0%{color: rgba(255,21,21);}
-  49%{color: rgba(255,21,21);}
-  60%{color: transparent;}
-  99%{color: transparent;}
-  100%{color: rgba(255,21,21);}
+@keyframes blinkingText {
+	0% {
+		color: rgba(255, 21, 21);
+	}
+	49% {
+		color: rgba(255, 21, 21);
+	}
+	60% {
+		color: transparent;
+	}
+	99% {
+		color: transparent;
+	}
+	100% {
+		color: rgba(255, 21, 21);
+	}
 }
