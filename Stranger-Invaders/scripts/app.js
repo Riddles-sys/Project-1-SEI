@@ -28,7 +28,7 @@ function init() {
   const cellCount = width * width
   const topGrid = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   const bottomGrid = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
-  // let cell = []
+  let square = []
   let invadersSpeed = 10000
   let currentScore = 0
   let currentLives = '3'
@@ -42,13 +42,14 @@ function init() {
   let currentPosition = startingPosition
   // let forcePosition = startingPosition
 
-  let direction = - 1
+  let direction = 0
 
   // Invaders Class
   const invaderClass = 'demo'
   let startingInvaders = [
     1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25,
-    26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38]
+    26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38,
+  ]
 
   let strangeInvaders = Array.from(startingInvaders) // same array with new ref
   let shooters = strangeInvaders
@@ -127,26 +128,21 @@ function init() {
     } else {
       lives.innerHTML = `${currentLives}`
     }
-
-    // addInvaders(startingInvaders)
   }
 
-  // Add invaders to the cell at the beginning
+  //* Add invaders to the cell at the beginning
   function addInvaders() {
-    for (let i = 0; i < startingInvaders.length; i++) {
-      if (!invaderClass.includes(i)) {
-        cells[startingInvaders[i]].classList.add('demo')
-      }
+    for (let i = 0; i < strangeInvaders.length; i++) {
+      cells[strangeInvaders[i]].classList.add('demo')
     }
   }
 
-  // function addForce(forcePosition) {
-  // 	for (let i = 0; i < hero.length; i++){
-  // 		if (!forcePosition.includes(i)) {
-  // 			thisCell.classList.add('elevenForce')
-  // 		}
-  // 	}
-  // }
+  //* Removes invaders
+  function removeInvaders() {
+    for (let i = 0; i < strangeInvaders.length; i++) {
+      cells[strangeInvaders[i]].classList.remove('demo')
+    }
+  }
 
   // ! Shooting ==
   // Add force to position
@@ -164,41 +160,13 @@ function init() {
     // cells[forcePosition].classList.remove('elevenForce');
   }
 
-  // function removeInvaders(startingInvaders) {
-  //   addForce(forcePosition)
-  //   if (elevenForce === demo) startingInvaders.classList.remove('demo')
-  //   elevenForce.classList.remove('elevenForce')
-  //   currentScore += 100
-
-  //   removeForce(topGrid)
-  // }
-
-  // // Trying to add hero to the same cells as hero so that they move together.
-  // function force(event) {
-  //   const keyCode = event.keyCode
-  //   const upMove = 32
-  //   if (upMove === keyCode && forcePosition >= width) {
-  //     let forcePosition = currentPosition
-  //     let refreshIntervalId = setInterval(() => {
-  //       moveBulletUp(currentPosition, refreshIntervalId)
-
-  //       // forcePosition = - width
-  //       // if (cells[forcePosition - 10].classList.length === 1) clearInterval();
-  //     }, 250)
-  //   } else if (forcePosition < topGrid) {
-  //     clearInterval(refreshIntervalId)
-  //     // break
-  //     // removeForce(forcePosition)
-  //     // addForce(forcePosition)
-  //   }
-  // }
-//! Combine
+  //! Combined
   function force(event) {
     const keyCode = event.keyCode
     const upMove = 32
     let forcePosition = currentPosition
     if (upMove === keyCode && forcePosition >= width) {
-      const refreshIntervalId = setInterval(() => {
+      const timer = setInterval(() => {
         // move missile/force up
         removeForce(forcePosition)
         forcePosition -= width
@@ -211,7 +179,7 @@ function init() {
             // forcePosition = currentPosition
             currentScore += 100
             score.innerHTML = currentScore
-            clearInterval(refreshIntervalId)
+            clearInterval(timer)
           } else {
             console.log(score)
             // forcePosition -= 10
@@ -219,16 +187,19 @@ function init() {
             // clearInterval(intId)
           }
         } else {
-          clearInterval(refreshIntervalId)
+          clearInterval(timer)
         }
       }, 250)
     }
+    // if (cells[startingInvaders]) {
+    //   const unloadedSquare = !cells[startingInvaders].classList.contains('demo')
+    //   if (unloadedSquare) window.alert('You win')
+    //   return endGame()
+    // }
     // break
     // removeForce(forcePosition)
     // addForce(forcePosition)
   }
-  
-
 
   function addShots(shooters) {
     for (let i = 0; i < startingInvaders.length; i++) {
@@ -259,55 +230,64 @@ function init() {
     }
   }
 
+  //* Moving invaders
+
+
   function moveInvaders() {
-    const someTouchingRight = startingInvaders.some(invader => {
-      return rightSide.includes(invader)
-    }) // If any of the invaders touch the right side
+    const invaderInterval = setInterval(() => {
+      removeInvaders()
+      if (direction) {
+        const someTouchingLeft = strangeInvaders.some((invader) => {
+          return leftSide.includes(invader)
+        }) // If any invaders touch the left side.
+        console.log('moving left')
+        if (someTouchingLeft) {
+          console.log('cant move right move left')
+          direction = !direction
+        } else {
+          console.log('move left')
+          for (let i = 0; i < strangeInvaders.length; i++) {
+            strangeInvaders[i] -= 1
+          }
+          addInvaders(strangeInvaders)
+        }
+      } else {
+        const someTouchingRight = strangeInvaders.some((invader) => {
+          return rightSide.includes(invader)
+        }) // If any of the invaders touch the right side
+        if (someTouchingRight) {
+          console.log('cant move right move down and switch direction')
+          direction = !direction
+        } else {
+          console.log('move right')
+          for (let i = 0; i < strangeInvaders.length; i++) {
+            strangeInvaders[i] += 1
+          }
+          addInvaders(strangeInvaders)
+        }
 
-    const someTouchingLeft = startingInvaders.some(invader => {
-      return leftSide.includes(invader)
-    })
-
-    invadersSpeed = setInterval(moveInvaders, invadersSpeed)
-    if (startingInvaders.some === rightSide) {
-      // checks to see if any are touching the right side. Using 'rightSide' as it helps me to visualise.
-      for (let i = 0; i < strangeInvaders.length; i++) {
-        // Loops through all the strangerInvaders
-        strangeInvaders[i] += width - 1 + 10
-      } // to move down
-    } else if (startingInvaders.some === leftSide) {
-      for (let i = 0; i < strangeInvaders.length; i++) {
-        strangeInvaders[i] += width + 1 + 10 // plus one to move it all right
-      } // to move down one row
-    } else startingInvaders.some === 'hero' // if some invaders touch the hero class it's over.
-    // return window.alert('Game Over')
-    // console.log(moveInvaders)
-    clearInterval(invadersSpeed)
+        console.log('moving right')
+      }
+    }, 800)
   }
+
+
+
 
   function startGame() {
     getHighScore()
     addHero(startingPosition)
     addInvaders(startingInvaders)
     moveInvaders()
-    // shots(strangeInvaders)
     startButton.disabled = true
     restartButton.disabled = false
     currentScore = 0
     currentLives = `${currentLives}`
     score.innerHTML = currentScore
     lives.innerHTML = currentLives
-    // if (shots === 'hero') {
-    //   currentLives--
-    //   lives.innerHTML = '${currentLives}'
-    // } else if (currentLives === 0) {
-    //   removeInvaders()
-    //   removeHero()
-    //   return endGame()
-    // }
   }
 
-  const interval = setInterval(moveInvaders, invadersSpeed)
+  // const interval = setInterval(moveInvaders, invadersSpeed)
 
   function resetGame() {
     clearInterval(interval)
@@ -330,7 +310,11 @@ function init() {
 
   function endGame() {
     clearInterval(interval)
-    if (startingInvaders.length === 0 || currentLives === 0 || startingInvaders === bottomGrid) {
+    if (
+      startingInvaders.length === 0 ||
+      currentLives === 0 ||
+      startingInvaders === bottomGrid
+    ) {
       endGame()
     } else if (currentScore > high) {
       window.alert(`New High Score!\n ${currentScore}`)
@@ -347,7 +331,4 @@ function init() {
   createGrid()
 }
 
-// window.onload = function startGame() {}
-
 window.addEventListener('DOMContentLoaded', init)
-
