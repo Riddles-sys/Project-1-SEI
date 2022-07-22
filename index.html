@@ -19,9 +19,13 @@
 
 <body>
   <video id="background-video" autoplay loop muted>
-    <source src="../Stranger-Invaders/videos/Stranger_Things_Clouds_Live_Wallpaper-generic-_google_vignette-0.mp4"
+    <source src="./videos/Stranger_Things_Clouds_Live_Wallpaper-generic-_google_vignette-0.mp4"
       type="video/mp4">
   </video>
+  <audio></audio>
+  <!-- <audio id="audio-space" controls style="display:none">
+    <source src="../Stranger-Invaders/sounds/space.mp3" type="audio"> Your browser does not support the audio element.
+  </audio> -->
   <header>
     <!-- Games Played -->
     <div id="played">Games Played: </div>
@@ -36,6 +40,13 @@
       <div class="main-wrapper">
         <div class="instructions">
           <h2>Instructions</h2>
+          <p>Vecna is coming and he is sending out his demogorgons.</p>
+          <p>When you click on <strong>Start Game</strong> Vecna will know where you are and come for you.</p>
+          <p>Use the <strong>&#8592</strong> and <strong>&#8594</strong> arrows to evade the demogorgons</p>
+          <p>You can press the <strong>Space Bar</strong> to use Eleven's powers</p>
+          <p>If the demogorgons get you, you lose a life.</p>
+          <p>If Vecna gets to you, it's the end.</p>
+          <p>Your sacrifice will not be in vain.</p>
     </section>
     <section>
       <!-- Wrapper two for game display -->
@@ -52,8 +63,8 @@
         <div class="buttons-container">
           <div class="btns">
             <!-- <button>Coins</button> -->
-            <button id="start-button">Start Game</button>
-            <button id="restart-button">Restart</button>
+            <button id="start-button" data-src="running_up_3">Start Game</button>
+            <button id="restart-button" data-src="running_up_2">Restart</button>
           </div>
         </div>
       </div>
@@ -67,7 +78,7 @@
         <h2>High Score: <span id="high-score"></span></h2>
         <p>After the destruction of Hawkins, Vecna has returned...</p>
         <p>You've managed to get your friends out of the Upside Down, but now you must hold back Vecna.</p>
-        <p>He now has the ability to transfer duplicate himself, spreading his power across all his copies.</p>
+        <p>He now has the ability to duplicate himself, spreading his power across all his copies.</p>
         <p>You have the advantage that when Vecna does this, he loses his tentacles</p>
         <p>However, don't let your guard down as he can now summon <span id="summon">  demogorgons  </span>at will.</p>
         <p>Hold Vecna back as long as possible to allow your friends to escape!</p>

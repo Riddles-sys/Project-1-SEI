@@ -7,7 +7,11 @@ function init() {
   const restartButton = document.querySelector('#restart-button')
   const score = document.querySelector('.score')
   const buttons = document.querySelectorAll('.btns')
-  let inPlay = false
+  const audio = document.querySelector('audio')
+  audio.volume = 0.75
+  // const spaceAudio = document.querySelector('#audio_space')
+
+ 
 
   // map out cells of the grid onto an array
   const cells = Array.from(document.querySelectorAll('.grid div'))
@@ -17,13 +21,11 @@ function init() {
 
   const width = 10
   const cellCount = width * width
-  // const topGrid = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
+  let inPlay = false
   let invadersSpeed = 1000
   let currentScore = 0
   let highScore = 0
   let currentLives = 3
-  // let timesPlay = 0
   const rightSide = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99]
   const leftSide = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
 
@@ -46,7 +48,18 @@ function init() {
   startButton.addEventListener('click', startGame)
   restartButton.addEventListener('click', resetGame)
   document.addEventListener('keydown', force)
+  buttons.forEach(btn => btn.addEventListener('click', playAudio))
 
+  //! Audio
+  function playAudio(event){
+    audio.src = (`sounds/${event.target.dataset.src}.mp3`)
+    audio.play()
+    console.log('sound playing')
+  }
+
+
+
+  //! Levels
   function addnewSetInvaders() {
     alert('Oh, you thought you won...')
     if (invadersSpeed > 700) {
@@ -254,7 +267,7 @@ function init() {
         if (strangeInvaders.some((invader) => invader >= 99)) {
           clearInterval(invaderInterval)
           removeInvaders()
-          // removeHero()
+          removeShots()
           endGame()
         }
       }
@@ -302,6 +315,7 @@ function init() {
     startButton.disabled = false
     inPlay = false
     removeHero()
+    removeShots()
     removeInvaders(strangeInvaders)
   }
 

@@ -77,9 +77,9 @@ main {
 	flex-direction: column;
 	width: 500px;
 	height: 500px;
-	background-image: url('../images/vecna.jpg');
+	/* background-image: url('../images/vecna.jpg');
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: cover; */
 }
 
 .game-display {
