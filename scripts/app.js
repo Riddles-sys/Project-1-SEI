@@ -29,6 +29,7 @@ function init() {
 
   const startingPosition = 95
   let currentPosition = startingPosition
+  let bulletTimeouts = []
 
   let direction = 0
 
@@ -47,15 +48,13 @@ function init() {
   document.addEventListener('keydown', force)
 
   function addnewSetInvaders() {
-    alert("Oh, you think you won. HA!")
-    addInvaders(startingInvaders)
-    // moveInvaders()
-    // addShots()
-    // shots()
-    if (invadersSpeed > 300) {
+    alert('Oh, you thought you won...')
+    if (invadersSpeed > 700) {
       invadersSpeed -= 100
-      // console.log('new invaders')
     }
+    strangeInvaders = Array.from(startingInvaders)
+    addInvaders(startingInvaders)
+    moveInvaders()
   }
 
   //! Get High Score
@@ -163,7 +162,8 @@ function init() {
             score.innerHTML = currentScore
             clearInterval(timer)
             if (strangeInvaders.length === 0) {
-              clearInterval(timer)
+              bulletTimeouts.forEach(intervalTimer => clearInterval(intervalTimer))
+              bulletTimeouts = []
               addnewSetInvaders(startingInvaders)
             }
           } else {
@@ -215,7 +215,7 @@ function init() {
       } else {
         clearInterval(shotsInterval)
       }
-    }, 200)
+    }, 3000)
   }
 
   //! Moving invaders
@@ -299,7 +299,6 @@ function init() {
       localStorage.setItem('highScore', currentScore)
       getHighScore()
     }
-
     startButton.disabled = false
     inPlay = false
     removeHero()
