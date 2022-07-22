@@ -6,70 +6,39 @@ function init() {
   const startButton = document.querySelector('#start-button')
   const restartButton = document.querySelector('#restart-button')
   const score = document.querySelector('.score')
-  const demo = document.querySelector('.demo')
-  const shooter = document.querySelectorAll('.rShooter')
-  const elevenForce = document.querySelector('.eForce')
-  const hero = document.getElementsByClassName('hero')
   const buttons = document.querySelectorAll('.btns')
-  // console.log('demo', demo);
-  // console.log('force', elevenForce);
-  // console.log('hero', hero);
-  // console.log('buttons', buttons);
+  let inPlay = false
 
   // map out cells of the grid onto an array
   const cells = Array.from(document.querySelectorAll('.grid div'))
-
-  // console.log('shooter', shooter);
 
   // Disable restart at the beginning.
   restartButton.disabled = true
 
   const width = 10
   const cellCount = width * width
-  const topGrid = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  const bottomGrid = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
-  let square = []
-  let invadersSpeed = 10000
+  // const topGrid = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  let invadersSpeed = 1000
   let currentScore = 0
-  let currentLives = '3'
+  let highScore = 0
+  let currentLives = 3
   // let timesPlay = 0
   const rightSide = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99]
   const leftSide = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
-  // console.log('right', rightSide);
-  // Character class
-  // const charClass = 'hero'
+
   const startingPosition = 95
   let currentPosition = startingPosition
-  // let forcePosition = startingPosition
 
   let direction = 0
 
   // Invaders Class
   const invaderClass = 'demo'
-  let startingInvaders = [
+  const startingInvaders = [
     1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25,
-    26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38,
-  ]
+    26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38]
 
   let strangeInvaders = Array.from(startingInvaders) // same array with new ref
-  let shooters = strangeInvaders
-
-  // (upMove === keyCode && forcePosition >= width - 10) {
-  //   addForce(forcePosition)
-
-  // // Shots to fire from random length of the alienInvaders as this will cover the grid.
-  // function shots() {
-  //   // shooter.classList.add('shooter')
-  //   addShots(shooters)
-  //   if (shots === 'hero') {
-  //     currentLives -= 1
-  //     removeShots(shooters)
-  //   } else {
-  //     removeShots(bottomGrid)
-  //   }
-  // }
-
-  // console.log('start', strangeInvaders)
 
   //Events
   document.addEventListener('keydown', heroMovement)
@@ -77,14 +46,26 @@ function init() {
   restartButton.addEventListener('click', resetGame)
   document.addEventListener('keydown', force)
 
-  // Getting the high score
+  function addnewSetInvaders() {
+    alert("Oh, you think you won. HA!")
+    addInvaders(startingInvaders)
+    // moveInvaders()
+    // addShots()
+    // shots()
+    if (invadersSpeed > 300) {
+      invadersSpeed -= 100
+      // console.log('new invaders')
+    }
+  }
+
+  //! Get High Score
   function getHighScore() {
-    const highScore = parseInt(localStorage.getItem('high-score')) || 0
-    // console.log('highScore ->', highScore);
+    highScore = parseInt(localStorage.getItem('highScore')) || 0;
+    console.log('highScore->', highScore)
     high.innerHTML = `${highScore}`
   }
 
-  // Grid for display
+  //! Grid for display
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
@@ -93,74 +74,77 @@ function init() {
       grid.appendChild(cell)
     }
     addHero(startingPosition)
-    // addForce(forcePosition) remove
     addInvaders(startingInvaders)
-    // addShots()
   }
 
-  // Add hero to position
+  //! Add hero to position
   function addHero(currentPosition) {
     cells[currentPosition].classList.add('hero')
   }
 
-  function removeHero(currentPosition) {
-    // if (currentPosition.classList.contains('hero')) {
-    cells[currentPosition].classList.remove('hero')
-    // }
+  function removeHero() {
+    for (let i = 0; i < cells.length; i++) {
+      if (cells[i].classList.contains('hero')) {
+        cells[i].classList.remove('hero')
+        console.log('remove hero')
+      }
+    }
   }
 
-  //Right & Left movement
+  //! Right & Left movement
   function heroMovement(event) {
     const keyCode = event.keyCode
     const left = 37
     const right = 39
 
-    if (left === keyCode && currentPosition % width !== 0) {
-      removeHero(currentPosition)
+    if (inPlay && left === keyCode && currentPosition % width !== 0) {
+      removeHero()
       currentPosition -= 1
       addHero(currentPosition)
-    } else if (right === keyCode && currentPosition % width !== width - 1) {
-      removeHero(currentPosition)
+    } else if (
+      inPlay &&
+      right === keyCode &&
+      currentPosition % width !== width - 1
+    ) {
+      removeHero()
       currentPosition += 1
       addHero(currentPosition)
-    } else if (currentLives === -1) {
+    } else if (currentLives === 0) {
+      removeHero()
       window.alert(`Game Over\n Final Score ${currentScore}`)
     } else {
       lives.innerHTML = `${currentLives}`
     }
   }
 
-  //* Add invaders to the cell at the beginning
-  function addInvaders() {
-    for (let i = 0; i < strangeInvaders.length; i++) {
-      cells[strangeInvaders[i]].classList.add('demo')
+  //! Add invaders to the cell at the beginning
+  function addInvaders(x) {
+    for (let i = 0; i < x.length; i++) {
+      const invaderCell = cells[x[i]]
+      if (invaderCell) invaderCell.classList.add('demo')
+      console.log('invader', invaderCell)
     }
   }
 
-  //* Removes invaders
+  //! Removes invaders
   function removeInvaders() {
-    for (let i = 0; i < strangeInvaders.length; i++) {
-      cells[strangeInvaders[i]].classList.remove('demo')
+    for (let i = 0; i < cells.length; i++) {
+      if (cells[i].classList.contains('demo')) cells[i].classList.remove('demo')
     }
   }
 
-  // ! Shooting ==
-  // Add force to position
+  // ! Shooting === HERO
   function addForce(forcePosition) {
     const thisCell = cells[forcePosition]
-    // console.log(thisCell);
     thisCell.classList.add('elevenForce')
   }
 
   function removeForce(forcePosition) {
     const thisCell = cells[forcePosition]
-    // console.log(thisCell);
     thisCell?.classList.remove('elevenForce')
-    // if (forcePosition === topGrid) thisCell.classList.remove('elevenForce')
-    // cells[forcePosition].classList.remove('elevenForce');
   }
 
-  //! Combined
+  //! Force from the hero
   function force(event) {
     const keyCode = event.keyCode
     const upMove = 32
@@ -175,157 +159,151 @@ function init() {
           if (loadedSquare) {
             cells[forcePosition].classList = ''
             strangeInvaders.splice(strangeInvaders.indexOf(forcePosition), 1)
-            console.log('strange new', strangeInvaders)
-            // forcePosition = currentPosition
             currentScore += 100
             score.innerHTML = currentScore
             clearInterval(timer)
+            if (strangeInvaders.length === 0) {
+              clearInterval(timer)
+              addnewSetInvaders(startingInvaders)
+            }
           } else {
-            console.log(score)
-            // forcePosition -= 10
             addForce(forcePosition)
-            // clearInterval(intId)
           }
         } else {
           clearInterval(timer)
         }
       }, 250)
     }
-    // if (cells[startingInvaders]) {
-    //   const unloadedSquare = !cells[startingInvaders].classList.contains('demo')
-    //   if (unloadedSquare) window.alert('You win')
-    //   return endGame()
-    // }
-    // break
-    // removeForce(forcePosition)
-    // addForce(forcePosition)
   }
 
-  function addShots(shooters) {
-    for (let i = 0; i < startingInvaders.length; i++) {
-      if (!shooters.includes(i)) {
-        cells[shooters[i]].classList.add('shooter')
-      }
-      shooter.forEach((rShooter) => rShooter.classList.add('shooter'))
+  //! Shots to fire from random length of the alienInvaders
+  function addShots(pos) {
+    if (cells[pos]) {
+      cells[pos].classList.add('rShooter')
     }
   }
 
-  function removeShots(shooters) {
-    for (let i = 0; i < startingInvaders.length; i++) {
-      if (shooters.includes(i)) {
-        cells[shooters[i]].classList.remove('shooter')
-      }
+  function removeShots(pos) {
+    if (cells[pos]) {
+      cells[pos].classList.remove('rShooter')
     }
   }
 
-  // Shots to fire from random length of the alienInvaders as this will cover the grid.
   function shots() {
-    // shooter.classList.add('shooter')
-    addShots(shooters)
-    if (shots === 'hero') {
-      currentLives -= 1
-      removeShots(shooters)
-    } else {
-      removeShots(bottomGrid)
+    let currentShotPos =
+      strangeInvaders[Math.floor(Math.random() * strangeInvaders.length)]
+    if (currentLives === 0) {
+      removeShots(currentShotPos)
+      endGame()
+      console.log('game ended')
     }
+    const shotsInterval = setInterval(() => {
+      removeShots(currentShotPos)
+      if (currentShotPos <= cellCount - width) {
+        currentShotPos += width
+
+        addShots(currentShotPos)
+        const containsHero = cells[currentShotPos]
+        if (containsHero && containsHero.classList.contains('hero')) {
+          if (currentLives > 0) {
+            currentLives -= 1
+          }
+
+          lives.innerHTML = `${currentLives}`
+          clearInterval(shotsInterval)
+        }
+      } else {
+        clearInterval(shotsInterval)
+      }
+    }, 200)
   }
 
-  //* Moving invaders
-
-
+  //! Moving invaders
   function moveInvaders() {
     const invaderInterval = setInterval(() => {
       removeInvaders()
       if (direction) {
         const someTouchingLeft = strangeInvaders.some((invader) => {
           return leftSide.includes(invader)
-        }) // If any invaders touch the left side.
-        console.log('moving left')
+        })
         if (someTouchingLeft) {
-          console.log('cant move right move left')
           direction = !direction
+          for (let i = 0; i < strangeInvaders.length; i++) {
+            strangeInvaders[i] += width
+            // shots([Math.floor(Math.random() * 1)])
+          }
         } else {
-          console.log('move left')
           for (let i = 0; i < strangeInvaders.length; i++) {
             strangeInvaders[i] -= 1
           }
-          addInvaders(strangeInvaders)
         }
       } else {
         const someTouchingRight = strangeInvaders.some((invader) => {
           return rightSide.includes(invader)
-        }) // If any of the invaders touch the right side
+        })
         if (someTouchingRight) {
-          console.log('cant move right move down and switch direction')
           direction = !direction
+          for (let i = 0; i < strangeInvaders.length; i++) {
+            strangeInvaders[i] += width
+          }
         } else {
-          console.log('move right')
           for (let i = 0; i < strangeInvaders.length; i++) {
             strangeInvaders[i] += 1
           }
-          addInvaders(strangeInvaders)
         }
-
-        console.log('moving right')
+        if (strangeInvaders.some((invader) => invader >= 99)) {
+          clearInterval(invaderInterval)
+          removeInvaders()
+          // removeHero()
+          endGame()
+        }
       }
-    }, 800)
+      if (currentLives > 0) addInvaders(strangeInvaders)
+    }, invadersSpeed)
   }
 
-
-
-
+  //! Start Game
   function startGame() {
+    const shotsInterval = setInterval(() => {
+      shots()
+      if (currentLives === 0) {
+        clearInterval(shotsInterval)
+        console.log('current lives')
+      }
+    }, 200)
     getHighScore()
     addHero(startingPosition)
     addInvaders(startingInvaders)
     moveInvaders()
     startButton.disabled = true
     restartButton.disabled = false
+    inPlay = true
     currentScore = 0
-    currentLives = `${currentLives}`
+    currentLives = 3
     score.innerHTML = currentScore
-    lives.innerHTML = currentLives
+    lives.innerHTML = `${currentLives}`
   }
 
-  // const interval = setInterval(moveInvaders, invadersSpeed)
-
+  //! Reset Game
   function resetGame() {
-    clearInterval(interval)
-    clearInterval(intId)
-    clearInterval(refreshIntervalId)
-    // let lives = 3
-    // let score = 0
-    invadersSpeed = 1500
+    strangeInvaders = startingInvaders
+    addInvaders(startingInvaders)
     removeHero()
     startGame()
   }
 
-  function winGame() {
-    clearInterval()
-    if (startingInvaders.length === 0 && startingPosition.includes('hero')) {
-      winGame()
-      window.alert('You win!')
-    } else startGame()
-  }
-
+  //! End Game
   function endGame() {
-    clearInterval(interval)
-    if (
-      startingInvaders.length === 0 ||
-      currentLives === 0 ||
-      startingInvaders === bottomGrid
-    ) {
-      endGame()
-    } else if (currentScore > high) {
-      window.alert(`New High Score!\n ${currentScore}`)
+    if (currentScore > highScore) {
+      window.alert(`New High Score! \n${currentScore}`)
       localStorage.setItem('highScore', currentScore)
       getHighScore()
     }
+
     startButton.disabled = false
-    currentLives = 3
-    currentScore = 0
-    invadersSpeed = 1500
-    buttons.forEach((btns) => btns.classList.remove('demo'))
+    inPlay = false
+    removeHero()
+    removeInvaders(strangeInvaders)
   }
 
   createGrid()

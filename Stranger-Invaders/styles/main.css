@@ -39,6 +39,7 @@ header {
 	color: rgba(255, 21, 21);
 	animation: blinkingText 2s 5;
 	font-size: 50px;
+  background-color: black;
 }
 
 section {
@@ -47,7 +48,6 @@ section {
 	padding: 0 10px;
 	justify-content: center;
 	border: 1px solid grey;
-	/* background-video: url(.images/); */
 	margin-bottom: 20px;
 	margin-top: 5px;
 	padding: 10px;
@@ -123,7 +123,7 @@ main {
 }
 
 .rShooter {
-	background-color: #a2203e;
+	background-image: url('../images/demogorgonsmall.gif');
 	background-repeat: no-repeat;
 	background-size: contain;
 }
