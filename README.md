@@ -1,5 +1,3 @@
-ReadMe
-
 Strange Invaders - Project-1-SEI
 
 Description
@@ -9,29 +7,28 @@ The player stars with three lives. The rows of invaders (Vecna) move down the sc
 
 To make it more challenging, if the player manages to destroy all of the invaders in time, a new level is created where the invaders reappear, but their speed increases by 1ms each time meaning that if the player is good enough, it can go endlessly and so there is no limit on the highest score achievable although it becomes more and more difficult to.
 
+
 Deployment link
 
-Strange Invaders
+https://riddles-sys.github.io/Project-1-SEI/
+
 
 Getting Started/Code Installation
 
-The code can be accessed on GitHub.
+The code can be accessed on GitHub:
 
-Timeframe & Working Team (Solo)
-
-The timeframe for this independent project was seven days.
+https://github.com/Riddles-sys/Project-1-SEI
 
 
+Time frame & Working Team (Solo)
 
-
-
+The time frame for this independent project was seven days.
 
 
 Technologies Used
 
 
-
-
+![](pics/Tech%20stack.png)
 
 
 Brief
@@ -53,10 +50,11 @@ Planning
 
 Initially I created a brief plan of how I intended to begin this project and which code I will most likely come have to use. 
 
-I also practiced writing some code by hand initially whilst going down my plan, outlining each step and function that may be required for the game.
+I also practised writing some code by hand initially whilst going down my plan, outlining each step and function that may be required for the game.
 
 I then created an initial wireframe on Excalidraw.com which would help me follow the plan:
 
+![](pics/wireframe.png)
 
 
 Build/Code Process (5 Phases)
@@ -67,6 +65,7 @@ For the first phase, initially I spent my time brainstorming ideas and creating 
 
 I used the wireframe, alongside flex-box to create the initial skeleton of the page, adding some styling as I went along. I then inserted a grid using CSS and JavaScript:
 
+![](pics/grid-display.png)
 
 
 This then lead me on to input the class for the invaders and the player onto the grid.
@@ -74,18 +73,19 @@ Phase 2:
 
 For the second phase, I wanted to be able to get the player and invaders to move. Using key codes I managed to get the player move. I found this challenging as there were many error codes that would appear for the functions I created to add and remove the invaders and player’s attributes. This is also when I begun to link the functions to the startGame and endGame whilst ensuring that the ‘start game’ and ‘restart’ buttons had functionality. 
 
+![](pics/heromovement.png)
 
 
 At this stage I needed to increase my understanding of how to use intervals because I needed to automate the movement of the invaders and also the way that the invaders attack player – which I wanted to randomise between the invaders so that it’s not always the same invaders taking shots. The player’s bullets are called ‘force’ – in keeping with the theme of the game.
 
-
+![](pics/movingInvaders.png)
 
 
 Phase 3:
 Once the difficult aspect of getting the player and invaders to both move and shoot had been passed, progression moved a lot more smoothly. To add a level of difficulty, I wanted to add an unexpected surprise for the user whereby once all of the invaders are destroyed, another function then adds the invaders again, but this time the speed at which they move towards the player is increased.
 
 
-
+![](pics/newset.png)
 
 
 
@@ -103,22 +103,18 @@ Phase 5:
 This phase was to deploy the game to GitHub, making it available to play.
 
 
-
+![](pics/mvp.png)
 
 
 Challenges
 
-The main challenges I had here was the movement and shooting of the invaders and player. I tried many techniques but the bigger issue preventing me from progressing was that my ‘add’ and ‘remove’ functions were also displaying errors withing Google’s development tools. I had to ensure that these functions were working correctly before moving ahead. When I felt stuck, I went over some of the CSS styling I wanted to do, increasing the library I had to use, but I also rewatched sessions, revised topics and finally requested some external input as I was aware that I may have become tunnel visioned when trying to fix the issue. I found this all to be extremely beneficial and it reignited my thought process.
+The main challenges I had here was the movement and shooting of the invaders and player. I tried many techniques but the bigger issue preventing me from progressing was that my ‘add’ and ‘remove’ functions were also displaying errors within Google’s development tools. I had to ensure that these functions were working correctly before moving ahead. When I felt stuck, I went over some of the CSS styling I wanted to do, increasing the library I had to use, but I also rewatched sessions, revised topics and finally requested some external input as I was aware that I may have become tunnel visioned when trying to fix the issue. I found this all to be extremely beneficial and it reignited my thought process.
 
 Another challenge I had was to ensure that pressing the space bar didn’t push the who screen up. I spent some time finding out how I could do this, researching various methods but the one that worked for me was:
 
+![](pics/control.png)
 
-
-My other notable challenge was to get the keys to stop working before the game has been started. To do this, I applied the same logic I had used to disable to start button after it had been pressed and then enable the restart button. I added a global variable which was ‘false’, and wrote an if statement without my function ensuring that once the game has started, it would become ‘true’. This would then allow for the functions to be carried out as designed rather than before. I labelled this function as ‘inPlay’:
-
-
-
-
+My other notable challenge was to get the keys to stop working before the game has been started. To do this, I applied the same logic I had used to disable to start button after it had been pressed and then enable the restart button. I added a global variable which was ‘false’, and wrote an if statement without my function ensuring that once the game has started, it would become ‘true’. This would then allow for the functions to be carried out as designed rather than before. I labelled this function as ‘inPlay’.
 
 
 
@@ -147,6 +143,7 @@ Bugs
     • addnewSetInvaders – when the new level is reached, it doesn’t remove the ‘shots’ that the invaders had released before. This means that they keep falling onto the player reducing the player’s life after the alert has been clicked. This significantly increases the difficulty of the game.
     • Space bar – although I disabled the player movements before the ‘start game’ I failed to disabled the ‘force’ or the space bar meaning that you can use the force before beginning the game.
     • endgame – the shots from the invaders do not disappear after Game Over.
+    
 
 Future Improvements
 
@@ -159,6 +156,5 @@ Future Improvements
     7. I would also like to add a character selection function with different heroes using different projectiles. 
     8. Adding more sound effects is a must when I have the chance to continue the development of this project.
     9. I don’t like how I added a black background to the main title, I’d want to approach this in a better way so that it’s not so blocky and more professional.
-
 
 
