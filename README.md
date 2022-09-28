@@ -2,6 +2,8 @@
 
 ## Description
 
+![](pics/strange-invaders.gif)
+
 Strange Invaders is a web-based game based on the timeless favourite arcade game “Space Invaders”, using the theme of the popular “Stranger Things” Netflix series.
 The player starts with three lives. The rows of invaders (Vecna) move down the screen towards character (Eleven). As they move down, random Demogorgons are summoned. If the Demogorgons hit the character, a life is taken away from the player. However, the character also has the ability to use the ‘force’ and destroy all of the invaders before they reach the same position as the character, if the same position is reached, it is Game Over.
 
