@@ -140,22 +140,22 @@ Lastly, my use of VS Code has greatly improved, using shortcuts and the finder e
 
 ## Bugs
 
-    * Reset – when the reset button is clicked, it usually only works correctly once. I believe this issue is with the ‘reset button’ still being highlighted so that after it is clicked, when the player is moving, it is inadvertently clicking the reset button again and again, increasing the speeds of the invaders. 
-    * addnewSetInvaders – when the new level is reached, it doesn’t remove the ‘shots’ that the invaders had released before. This means that they keep falling onto the player, reducing the player’s life after the alert has been clicked. This significantly increases the difficulty of the game.
-    * Space bar – although I disabled the player movements before the ‘start game’ I failed to disabled the ‘force’ or the space bar meaning that you can use the force before beginning the game.
-    * endgame – the shots from the invaders do not disappear after Game Over.
+* Reset – when the reset button is clicked, it usually only works correctly once. I believe this issue is with the ‘reset button’ still being highlighted so that after it is clicked, when the player is moving, it is inadvertently clicking the reset button again and again, increasing the speeds of the invaders. 
+* addnewSetInvaders – when the new level is reached, it doesn’t remove the ‘shots’ that the invaders had released before. This means that they keep falling onto the player, reducing the player’s life after the alert has been clicked. This significantly increases the difficulty of the game.
+* Space bar – although I disabled the player movements before the ‘start game’ I failed to disabled the ‘force’ or the space bar meaning that you can use the force before beginning the game.
+* endgame – the shots from the invaders do not disappear after Game Over.
     
 
 ## Future Improvements
 
-[1]. Insert in game pop up functions to replace the window.alerts that I placed.
-[2]. I wanted to initially create a username value so that once a username is input, it saves it and the highest score of that particular username is also saved. This is so that people who use the same system can play but can save their high scores under their own username.
-[3]. I have a ‘Games Played’ section in the header which was meant to act as a click counter for every time ‘start game’ was clicked so I could see how many times the game was played.
-[4]. I wanted to create another button where you would have to insert a ‘coin’ pixel animation, which would then set the lives to 3 and enable the start button – as though it was a real arcade game.
-[5]. The grid itself should have been bigger so the animations and images used within it could be seen clearly. I made it small so that it could fit into the ‘screen’ of an arcade game – although I wasn’t able to input it.
-[6]. Initially, the idea was that the demogorgons would come at the player. To simplify the game, I changed this so that Vecna is the invader and releases the demogorgons (as shots). I would like to revert it back to the first idea so that once the first wave of demogorgons have been defeated, a flash screen appears with a cut scene where Vecna is now entering the fight, similar to a ‘boss’ level. When he moves, it would activate a sound at random intervals which would goad the player. Randomly, the whole play screen would change from the Upside Down to Hawkins in the real world and the battle would continue there.
-[7]. I would also like to add a character selection function with different heroes using different projectiles. 
-[8]. Adding more sound effects is a must when I have the chance to continue the development of this project.
-[9]. I don’t like how I added a black background to the main title, I’d want to approach this in a better way so that it’s not so blocky and more professional.
+1. Insert in game pop up functions to replace the window.alerts that I placed.
+2. I wanted to initially create a username value so that once a username is input, it saves it and the highest score of that particular username is also saved. This is so that people who use the same system can play but can save their high scores under their own username.
+3. I have a ‘Games Played’ section in the header which was meant to act as a click counter for every time ‘start game’ was clicked so I could see how many times the game was played.
+4. I wanted to create another button where you would have to insert a ‘coin’ pixel animation, which would then set the lives to 3 and enable the start button – as though it was a real arcade game.
+5. The grid itself should have been bigger so the animations and images used within it could be seen clearly. I made it small so that it could fit into the ‘screen’ of an arcade game – although I wasn’t able to input it.
+6. Initially, the idea was that the demogorgons would come at the player. To simplify the game, I changed this so that Vecna is the invader and releases the demogorgons (as shots). I would like to revert it back to the first idea so that once the first wave of demogorgons have been defeated, a flash screen appears with a cut scene where Vecna is now entering the fight, similar to a ‘boss’ level. When he moves, it would activate a sound at random intervals which would goad the player. Randomly, the whole play screen would change from the Upside Down to Hawkins in the real world and the battle would continue there.
+7. I would also like to add a character selection function with different heroes using different projectiles. 
+8. Adding more sound effects is a must when I have the chance to continue the development of this project.
+9. I don’t like how I added a black background to the main title, I’d want to approach this in a better way so that it’s not so blocky and more professional.
 
 
